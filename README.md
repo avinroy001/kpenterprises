@@ -23,7 +23,7 @@ npm --prefix backend install
 - `backend/.env`
   - `PORT=5000`
   - `MONGODB_URI=<your mongo atlas uri>`
-  - `FRONTEND_ORIGIN=http://localhost:5173`
+  - `FRONTEND_ORIGIN=https://kpenterprises.org,http://localhost:5173`
 
 4. Run apps:
 ```bash
@@ -39,7 +39,7 @@ npm run dev:frontend
 - Start command: `npm start`
 - Environment variables:
   - `MONGODB_URI` = your Atlas URI
-  - `FRONTEND_ORIGIN` = your Hostinger site URL (example: `https://yourdomain.com`)
+  - `FRONTEND_ORIGIN` = `https://kpenterprises.org`
   - `PORT` = `10000` (or leave unset, Render provides `PORT`)
 
 ### Frontend (Hostinger)
