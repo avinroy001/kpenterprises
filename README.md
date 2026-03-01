@@ -19,9 +19,9 @@ npm --prefix backend install
 
 3. Add environment values:
 - `frontend/.env`
-  - `VITE_API_BASE_URL=http://localhost:5000`
+  - `VITE_API_BASE_URL=http://localhost:5001` (local) or `https://kpenterprises-3dtt.onrender.com` (production)
 - `backend/.env`
-  - `PORT=5000`
+  - `PORT=5001`
   - `MONGODB_URI=<your mongo atlas uri>`
   - `FRONTEND_ORIGIN=https://kpenterprises.org,http://localhost:5173`
 
@@ -49,7 +49,7 @@ npm run build
 ```
 - Upload `frontend/dist` files to Hostinger.
 - Set `frontend/.env` before build:
-  - `VITE_API_BASE_URL=https://<your-render-backend-url>`
+  - `VITE_API_BASE_URL=https://kpenterprises-3dtt.onrender.com`
 
 ## API endpoints
 - `GET /api/health`
