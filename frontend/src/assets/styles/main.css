@@ -242,7 +242,7 @@ a { color: inherit; }
   padding: 12px 26px;
 }
 
-.quote-btn-mobile {
+.site-nav .quote-btn-mobile {
   display: none;
 }
 
@@ -1218,7 +1218,7 @@ a { color: inherit; }
   .nav-item-wrap { width: 100%; }
   .nav-toggle { margin-left: 2px; }
   .header-actions { display: none; }
-  .quote-btn-mobile {
+  .site-nav .quote-btn-mobile {
     display: inline-flex;
     margin-top: 4px;
     justify-content: center;
