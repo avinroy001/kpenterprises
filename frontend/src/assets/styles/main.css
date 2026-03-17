@@ -21,6 +21,10 @@ body,
   background: var(--bg);
 }
 
+body {
+  overflow-x: hidden;
+}
+
 a { color: inherit; }
 
 .container {
@@ -60,6 +64,7 @@ a { color: inherit; }
   display: inline-flex;
   align-items: center;
   min-width: 260px;
+  min-height: 44px;
 }
 
 .brand-logo-rect {
@@ -84,6 +89,28 @@ a { color: inherit; }
 }
 
 .nav-item-wrap { position: relative; }
+
+.header-menu-toggle {
+  display: none;
+  width: 46px;
+  height: 46px;
+  border: 1px solid #d8d8dc;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.header-menu-toggle span {
+  width: 18px;
+  height: 2px;
+  background: #111;
+  border-radius: 999px;
+}
 
 .site-nav a {
   text-decoration: none;
@@ -213,6 +240,10 @@ a { color: inherit; }
   font-weight: 700;
   font-size: 14px;
   padding: 12px 26px;
+}
+
+.quote-btn-mobile {
+  display: none;
 }
 
 .hero-split { padding: 0; }
@@ -1154,14 +1185,57 @@ a { color: inherit; }
 }
 
 @media (max-width: 980px) {
-  .header-inner { grid-template-columns: 1fr; gap: 10px; padding: 10px 0 14px; }
+  .container { width: min(1300px, calc(100vw - 32px)); }
+  .header-inner {
+    min-height: auto;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    padding: 10px 0 14px;
+  }
   .brand { min-width: 0; }
   .brand-logo-rect { width: 220px; height: 46px; }
-  .site-nav { justify-content: flex-start; flex-wrap: wrap; gap: 14px; }
-  .site-nav a { font-size: 16px; }
+  .header-menu-toggle { display: inline-flex; }
+  .site-nav {
+    grid-column: 1 / -1;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 16px;
+    border: 1px solid #ececec;
+    border-radius: 20px;
+    background: #fff;
+  }
+  .site-nav.nav-open { display: flex; }
+  .site-nav a,
+  .nav-main-btn {
+    width: 100%;
+    justify-content: space-between;
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  .nav-item-wrap { width: 100%; }
   .nav-toggle { margin-left: 2px; }
   .header-actions { display: none; }
-  .mega-menu { min-width: 92vw; left: 0; transform: none; grid-template-columns: 1fr; }
+  .quote-btn-mobile {
+    display: inline-flex;
+    margin-top: 4px;
+    justify-content: center;
+    width: 100%;
+  }
+  .mega-menu {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    min-width: 0;
+    width: 100%;
+    margin-top: 10px;
+    grid-template-columns: 1fr;
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
   .mega-col + .mega-col { border-left: 0; border-top: 1px solid #ddd; }
   .hero-split-inner, .about-grid, .philosophy-grid, .how-grid { grid-template-columns: 1fr; min-height: 0; }
   .contact-form-grid, .info-split-grid { grid-template-columns: 1fr; }
@@ -1230,4 +1304,221 @@ a { color: inherit; }
   .footer-grid, .footer-grid-4 { grid-template-columns: 1fr; gap: 24px; }
   .footer-grid h4 { font-size: 24px; margin-bottom: 12px; }
   .footer-list a, .footer-grid-4 p, .footer-brand-col p { font-size: 18px; }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 56px 0; }
+  .hero-copy { padding: 40px 20px; }
+  .hero h1 { margin: 20px 0 16px; font-size: clamp(30px, 9vw, 46px); }
+  .eyebrow { font-size: 16px; }
+  .hero-subtext,
+  .intro-inner p,
+  .about-grid p,
+  .philosophy p,
+  .who-desc,
+  .smm-platforms-intro,
+  .smm-benefits-intro,
+  .contact-form-panel > p,
+  .info-split-grid p,
+  .info-split-grid li,
+  .refund-policy p,
+  .refund-policy-group li,
+  .legal-document p,
+  .legal-document li {
+    font-size: 16px;
+  }
+  .btn-primary,
+  .btn-yellow,
+  .intro-btn,
+  .about-btn,
+  .philo-btn,
+  .about-image-text-btn,
+  .info-quote-btn {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+  .hero-actions { display: flex; }
+  .center-title,
+  .about-grid h2,
+  .philosophy h2,
+  .reviews-head h2,
+  .contact-form-panel h2,
+  .info-split-grid h2,
+  .smm-difference-copy h2,
+  .legal-document h2,
+  .refund-policy-kicker {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+  .reviews-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .reviews-head p { font-size: 20px; }
+  .service-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+  .service-card h3 { font-size: 24px; }
+  .service-card p,
+  .faq-card p,
+  .tech-dark-item p,
+  .smm-benefit-item p,
+  .smm-process-item p,
+  .smm-difference-item p {
+    font-size: 16px;
+  }
+  .smm-platform-item h3,
+  .smm-benefit-item h3,
+  .smm-process-item h3,
+  .tech-dark-head h3,
+  .refund-policy-group h3,
+  .refund-policy-final h3,
+  .legal-document h3 {
+    font-size: clamp(24px, 7vw, 32px);
+  }
+  .about-image-text-copy h2,
+  .about-team-copy h2,
+  .about-values-title,
+  .about-why-title {
+    font-size: clamp(30px, 8vw, 44px);
+  }
+  .about-image-text-copy h3,
+  .about-image-text-link,
+  .faq-q-row h3 {
+    font-size: clamp(22px, 6vw, 28px);
+  }
+  .about-image-text-media img,
+  .about-team-photos img,
+  .smm-process-image,
+  .smm-difference-image,
+  .contact-form-image-wrap img,
+  .info-split-image {
+    min-height: 240px;
+  }
+  .awards-grid { grid-template-columns: 1fr; }
+  .faq-card,
+  .faq-card:nth-child(odd),
+  .faq-card:nth-child(even) {
+    padding: 24px 0;
+  }
+  .faq-q-row span { font-size: 34px; }
+  .smm-platform-head,
+  .smm-platform-head.no-icon {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+  .smm-benefit-item,
+  .smm-process-item,
+  .smm-difference-item,
+  .tech-dark-head {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .contact-form .btn-primary { width: 100%; }
+  .cookie-banner { padding: 12px; }
+  .cookie-banner-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cookie-btn-accept,
+  .cookie-btn-decline {
+    width: 100%;
+  }
+  .footer-logo { width: 180px; height: auto; }
+}
+
+@media (max-width: 560px) {
+  .container { width: min(1300px, calc(100vw - 24px)); }
+  .header-inner { padding: 8px 0 12px; }
+  .brand-logo-rect { width: min(190px, 100%); height: auto; }
+  .site-nav { padding: 14px; border-radius: 16px; }
+  .quote-btn,
+  .quote-btn-mobile { font-size: 13px; padding: 12px 18px; }
+  .hero-cover,
+  .hero-cover-overlay,
+  .hero-cover-refund,
+  .hero-cover-refund .hero-cover-overlay,
+  .hero-cover-terms,
+  .hero-cover-terms .hero-cover-overlay {
+    min-height: 380px;
+  }
+  .hero-image-wrap { min-height: 240px; }
+  .intro-line { margin: 18px auto 22px; width: 72px; }
+  .service-card,
+  .review-card,
+  .contact-form-panel,
+  .smm-difference-copy,
+  .cookie-banner-inner {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .about-grid,
+  .philosophy-grid,
+  .smm-process-grid,
+  .about-image-text-grid,
+  .about-team-grid,
+  .about-why-grid,
+  .info-split-grid {
+    gap: 20px;
+  }
+  .who-item img { width: 96px; height: 96px; }
+  .who-item h3 { font-size: 38px; }
+  .partners-row img,
+  .awards-grid img { height: 90px; }
+  .contact-form textarea { min-height: 96px; }
+  .footer-grid h4 { font-size: 22px; }
+  .footer-list a,
+  .footer-grid-4 p,
+  .footer-brand-col p { font-size: 16px; }
+}
+
+@media (max-width: 400px) {
+  .header-menu-toggle {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+  }
+  .hero h1,
+  .hero-cover h1,
+  .cta-banner-inner h2 {
+    font-size: clamp(26px, 10vw, 34px);
+  }
+  .center-title,
+  .about-grid h2,
+  .philosophy h2,
+  .contact-form-panel h2,
+  .info-split-grid h2,
+  .legal-document h2,
+  .refund-policy-kicker {
+    font-size: 26px;
+  }
+  .service-card h3,
+  .about-image-text-copy h3,
+  .faq-q-row h3,
+  .smm-platform-item h3,
+  .smm-benefit-item h3,
+  .smm-process-item h3,
+  .tech-dark-head h3,
+  .refund-policy-group h3,
+  .refund-policy-final h3,
+  .legal-document h3 {
+    font-size: 22px;
+  }
+  .faq-q-row span,
+  .smm-platform-icon-plain {
+    font-size: 28px;
+  }
+  .smm-platform-icon,
+  .smm-check-icon,
+  .smm-process-icon,
+  .about-why-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
 }

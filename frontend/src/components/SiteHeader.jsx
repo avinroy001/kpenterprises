@@ -8,6 +8,7 @@ function SiteHeader({ site }) {
   const [openMenu, setOpenMenu] = useState("");
   const [activeServicesItem, setActiveServicesItem] = useState("SEO Services");
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const lastScrollY = useRef(0);
 
   const openByHover = (label) => {
@@ -39,7 +40,19 @@ function SiteHeader({ site }) {
   useEffect(() => {
     setOpenMenu("");
     setActiveServicesItem("SEO Services");
+    setIsMobileNavOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth > 980) {
+        setIsMobileNavOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -80,7 +93,27 @@ function SiteHeader({ site }) {
             <span className="brand-text">{site?.brandText || "KP Enterprises"}</span>
           )}
         </Link>
-        <nav className="site-nav" aria-label="Primary">
+        <button
+          type="button"
+          className="header-menu-toggle"
+          aria-label={isMobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isMobileNavOpen}
+          aria-controls="site-primary-nav"
+          onClick={() => {
+            setIsMobileNavOpen((current) => !current);
+            setOpenMenu("");
+            setActiveServicesItem("SEO Services");
+          }}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav
+          id="site-primary-nav"
+          className={`site-nav ${isMobileNavOpen ? "nav-open" : ""}`}
+          aria-label="Primary"
+        >
           {navItems.map((item) => (
             <div
               key={item.path}
@@ -107,6 +140,10 @@ function SiteHeader({ site }) {
                 <NavLink
                   to={item.path}
                   className={({ isActive }) => (isActive ? "active" : "")}
+                  onClick={() => {
+                    setOpenMenu("");
+                    setIsMobileNavOpen(false);
+                  }}
                 >
                   {item.label}
                 </NavLink>
@@ -129,7 +166,14 @@ function SiteHeader({ site }) {
                             <ul>
                               {(column.items || []).map((sub) => (
                                 <li key={sub.path}>
-                                  <Link to={sub.path} role="menuitem" onClick={closeHover}>
+                                  <Link
+                                    to={sub.path}
+                                    role="menuitem"
+                                    onClick={() => {
+                                      closeHover();
+                                      setIsMobileNavOpen(false);
+                                    }}
+                                  >
                                     {sub.label}
                                   </Link>
                                 </li>
@@ -173,7 +217,10 @@ function SiteHeader({ site }) {
                                   <Link
                                     to={sub.path}
                                     role="menuitem"
-                                    onClick={closeHover}
+                                    onClick={() => {
+                                      closeHover();
+                                      setIsMobileNavOpen(false);
+                                    }}
                                     onMouseEnter={() => setActiveServicesItem(sub.label)}
                                     onFocus={() => setActiveServicesItem(sub.label)}
                                     className={`mega-link ${isActivePrimary ? "submenu-active" : ""}`}
@@ -193,7 +240,14 @@ function SiteHeader({ site }) {
                             <ul>
                               {(secondaryColumn.items || []).map((sub) => (
                                 <li key={sub.path}>
-                                  <Link to={sub.path} role="menuitem" onClick={closeHover}>
+                                  <Link
+                                    to={sub.path}
+                                    role="menuitem"
+                                    onClick={() => {
+                                      closeHover();
+                                      setIsMobileNavOpen(false);
+                                    }}
+                                  >
                                     {sub.label}
                                   </Link>
                                 </li>
@@ -208,6 +262,18 @@ function SiteHeader({ site }) {
               ) : null}
             </div>
           ))}
+          {quoteCta ? (
+            <Link
+              className="quote-btn quote-btn-mobile"
+              to={quoteCta.path}
+              onClick={() => {
+                setOpenMenu("");
+                setIsMobileNavOpen(false);
+              }}
+            >
+              {quoteCta.label}
+            </Link>
+          ) : null}
         </nav>
         <div className="header-actions">
           {quoteCta ? (

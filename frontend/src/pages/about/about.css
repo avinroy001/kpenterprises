@@ -184,3 +184,49 @@
     padding-left: 0;
   }
 }
+
+@media (max-width: 768px) {
+  .about-image-text-copy h2,
+  .about-team-copy h2,
+  .about-values-title,
+  .about-why-title {
+    font-size: clamp(30px, 8vw, 42px);
+  }
+
+  .about-image-text-copy p,
+  .about-team-copy p,
+  .about-values-description,
+  .about-why-item p {
+    font-size: 16px;
+  }
+
+  .about-image-text-btn {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+
+  .about-why-item h3 {
+    font-size: clamp(24px, 7vw, 32px);
+  }
+}
+
+@media (max-width: 560px) {
+  .about-image-text {
+    padding: 44px 0;
+  }
+
+  .about-image-text-grid,
+  .about-team-grid,
+  .about-why-grid {
+    gap: 20px;
+  }
+
+  .about-team-photos {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image-text-media img {
+    min-height: 220px;
+  }
+}
